@@ -50,10 +50,10 @@ You should now have five .csv files: one big file with all the data and four sma
 
 1. Get and set your working directory. Modify setwd() to correspond to the path to your folder.
 
-'''
+```
 getwd()
 setwd("/Users/anyas21/Desktop/RFiles")
-'''
+```
 
 2. Read the .csv into RStudio and save it as a variable. This will create a data frame.
 
