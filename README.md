@@ -1,12 +1,12 @@
 # Analyzing RNA-seq Alzheimer's Data
 Tools used: Excel, R, Bioconductor. Make sure you have access to RStudio as well.
 # About this project:
-I first looked at this tutorial (https://bioconductor.org/packages/release/bioc/vignettes/PCAtools/inst/doc/PCAtools.html#load-the-package-into-r-session) from Bioconductor to read and analyze normalized RNA-sequencing data from a breast cancer study. I adapted the tutorial to fit this study (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144254), which analyzes the APOE2 differences in brain transcriptomics. For context, the APOE2 gene has been linked to Alzheimer's disease, which is the leading form of dementia. According to the Alzheimer's Association, Alzheimer's disease currently affects approximately 5.8 million individuals in the United States, two thirds of them women, and could affect as many as 13.8 million by 2050. To that end, finding a cure for Alzheimer's is incredibly important.
+I first looked at this tutorial (https://bioconductor.org/packages/release/bioc/vignettes/PCAtools/inst/doc/PCAtools.html#load-the-package-into-r-session) from Bioconductor to read and analyze normalized RNA-sequencing data from a breast cancer study. I adapted the tutorial to fit this study (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118553), which analyzes the differences in brain transcriptomics between Alzheimer's and non-Alzheimer's patients. Analyzing genetic in different sections of the brain allows us to learn more about the progression of Alzheimer's.
 In contrast to the Bioconductor tutorial, I used Excel to modify my data before feeding it into RStudio; I then changed the tutorial code to better fit my environment. Then, I turned my process into my own tutorial for analyzing RNA-seq data from GEO using Excel, Bioconductor, and R. I've broken down this process into several steps, as seen below. 
 # Downloading Data
 It's possible - and sometimes more useful - to download the file directly into RStudio by using GEOquery and the GEO accession code. However, I found this approach doesn't always work for all kinds of data. If you're running into errors or not seeing the desired output, manually downloading and modifying the file may be best.
 Steps:
-1. Download the series matrix file from GEO. You can access that here. 
+1. Download the series matrix file from GEO. You can access that here: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118553.
 2. Unzip data and move it to an accessible folder. I used WinZip for this and created a folder, called "RFiles," specifically for this project.
 # Modifying Data Using Excel
 I chose to use Excel to quickly modify my data rather than utilizing RStudio for this part of the process. It's possible to run these modifications in R, but I found my computer slowed down quite a bit while doing so.  If you would like to run this in RStudio, simply hit "import dataset" in the environment tab and go from there. Note that if you're using the .csvs connected with this tutorial, you will have to combine temporal_cortex_1 and temporal_cortex_2. 
@@ -18,8 +18,8 @@ Steps:
 5. Click on "split column," "by delimiter," and then select "tab" as your delimiter.
 6. Delete unneeded rows from the top of the file. I deleted through row 36.
 7. Click "close and load."
-8. Delete extraneous rows from in the middle of your dataset (such as information about experimental procedure). I deleted rows 1-10 and 16-36. DO NOT delete the metadata (information about the age, gender, disease state, etc. of subjects) which you will analyze later. 
-9. Change necessary names. For example, I changed a row name from "sample_characteristics_ch1" to "Gender." Other new row names included: "Age," "Disease State," and "Tissue." 
+8. Delete extraneous rows from in the middle of your dataset (such as information about experimental procedure). I deleted rows 1-10 and 16-36, but you can use your best judgment. DO NOT delete the metadata (information about the age, gender, disease state, etc. of subjects) which you will analyze later. 
+9. Change necessary names. For example, I changed a row name from "sample_characteristics_ch1" to "Gender." Other new row names included: "Age," "Disease State," and "Tissue." Use your best judgment to decide on row names.
 10. Some of the data says "tissue: temporal_cortex" instead of just "temporal_cortex." To fix this, use cmd+h on your keyboard and replace "tissue: " with "". Do this for the age, disease state, and gender rows as well. 
 11. Search through the data for any NA values. Make sure not to delete any "entorhinal_cortex" data (since the name has "na" in it)! Then delete rows with NA values (the dataset is large enough that these individuals will not have a big impact).
 12. Since there are four sections of the brain in this data, it's helpful to create a new .csv for each section of the brain. To do so, go to "data," "sort," "options," "sort left to right," and then choose the row that has your tissue data. Hit okay. Your data should now be sorted in alphabetical order by tissue type.
